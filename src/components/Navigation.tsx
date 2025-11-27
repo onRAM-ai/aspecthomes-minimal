@@ -7,6 +7,7 @@ import logo from "@/assets/aspect-homes-logo.png";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,32 @@ const Navigation = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const sections = ["home", "services", "gallery", "contact"];
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -34,10 +61,10 @@ const Navigation = () => {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50 py-4"
-            : "bg-background/80 backdrop-blur-sm py-6"
+            ? "bg-background/98 backdrop-blur-lg shadow-lg border-b border-border/40 py-4"
+            : "bg-transparent py-6"
         )}
       >
         <div className="container px-4">
@@ -45,32 +72,46 @@ const Navigation = () => {
             {/* Logo/Brand */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
             >
               <img 
                 src={logo} 
                 alt="Aspect Homes" 
-                className="h-10 md:h-12 w-auto"
+                className="h-12 md:h-14 w-auto"
               />
             </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-10">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="relative text-muted-foreground hover:text-foreground transition-colors font-inter font-medium group"
+                  aria-current={activeSection === link.id ? "page" : undefined}
+                  className={cn(
+                    "relative font-inter font-medium group transition-colors duration-300",
+                    activeSection === link.id
+                      ? "text-primary"
+                      : isScrolled 
+                        ? "text-muted-foreground hover:text-foreground"
+                        : "text-white/90 hover:text-white"
+                  )}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                  <span 
+                    className={cn(
+                      "absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-300",
+                      activeSection === link.id ? "w-full" : "w-0 group-hover:w-full"
+                    )}
+                  />
                 </button>
               ))}
               <Button
                 onClick={() => scrollToSection("contact")}
-                className="gap-2"
+                size="lg"
+                className="gap-2 rounded-full group"
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                 Get In Touch
               </Button>
             </div>
@@ -78,36 +119,72 @@ const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 hover:bg-secondary/80 rounded-lg transition-colors"
+              className={cn(
+                "md:hidden p-2 rounded-lg transition-all duration-300",
+                isScrolled
+                  ? "hover:bg-secondary/80"
+                  : "hover:bg-white/10 backdrop-blur-sm"
+              )}
               aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6 text-foreground" />
+                <X className={cn("h-6 w-6", isScrolled ? "text-foreground" : "text-white")} />
               ) : (
-                <Menu className="h-6 w-6 text-foreground" />
+                <Menu className={cn("h-6 w-6", isScrolled ? "text-foreground" : "text-white")} />
               )}
             </button>
           </div>
         </div>
       </nav>
 
+      {/* Mobile Menu Backdrop */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden transition-opacity duration-300",
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
+
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-background/95 backdrop-blur-md md:hidden transition-all duration-300",
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          "fixed top-0 right-0 bottom-0 z-50 w-[280px] bg-background shadow-2xl md:hidden transition-transform duration-300 ease-out",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
-        style={{ top: isScrolled ? "72px" : "88px" }}
       >
-        <div className="container px-4 py-8">
-          <div className="flex flex-col gap-6">
-            {navLinks.map((link) => (
+        <div className="flex flex-col h-full">
+          {/* Mobile Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b border-border/50">
+            <img src={logo} alt="Aspect Homes" className="h-10 w-auto" />
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 hover:bg-secondary/80 rounded-lg transition-colors"
+              aria-label="Close menu"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Content */}
+          <div className="flex flex-col gap-2 p-6 flex-1">
+            {navLinks.map((link, index) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-2xl font-medium text-foreground hover:text-primary transition-colors text-left"
+                aria-current={activeSection === link.id ? "page" : undefined}
+                className={cn(
+                  "text-left py-3 px-4 rounded-lg text-lg font-medium transition-all duration-300",
+                  activeSection === link.id
+                    ? "text-primary bg-primary/10"
+                    : "text-foreground hover:text-primary hover:bg-secondary/50",
+                  isMobileMenuOpen && `animate-fade-in`
+                )}
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                  animationFillMode: "backwards"
+                }}
               >
                 {link.label}
               </button>
@@ -115,7 +192,11 @@ const Navigation = () => {
             <Button
               size="lg"
               onClick={() => scrollToSection("contact")}
-              className="gap-2 w-full"
+              className="gap-2 w-full mt-4 rounded-full animate-fade-in"
+              style={{
+                animationDelay: `${navLinks.length * 50}ms`,
+                animationFillMode: "backwards"
+              }}
             >
               <Phone className="h-5 w-5" />
               Get In Touch
