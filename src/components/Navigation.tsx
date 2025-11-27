@@ -36,8 +36,8 @@ const Navigation = () => {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-md py-4"
-            : "bg-transparent py-6"
+            ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50 py-4"
+            : "bg-background/80 backdrop-blur-sm py-6"
         )}
       >
         <div className="container px-4">
@@ -60,9 +60,10 @@ const Navigation = () => {
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
+                  className="relative text-muted-foreground hover:text-foreground transition-colors font-inter font-medium group"
                 >
                   {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
                 </button>
               ))}
               <Button
