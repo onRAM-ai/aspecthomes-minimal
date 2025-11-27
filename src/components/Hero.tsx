@@ -21,10 +21,10 @@ const Hero = () => {
       <div className="container relative z-10 px-4 py-20 md:py-32">
         <div className="max-w-3xl">
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Licensed Builders & Carpenters
+            Aspect Homes
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-            Goldfields, Western Australia
+            Licensed Builders & Carpenters | Goldfields, Western Australia
           </p>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
             Professional building and carpentry services for new homes, extensions, 

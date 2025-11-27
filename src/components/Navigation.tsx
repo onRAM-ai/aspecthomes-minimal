@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/aspect-homes-logo.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,9 +45,13 @@ const Navigation = () => {
             {/* Logo/Brand */}
             <button
               onClick={() => scrollToSection("home")}
-              className="text-xl md:text-2xl font-bold text-foreground hover:text-primary transition-colors"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             >
-              <span className="text-primary">Licensed</span> Builders
+              <img 
+                src={logo} 
+                alt="Aspect Homes" 
+                className="h-10 md:h-12 w-auto"
+              />
             </button>
 
             {/* Desktop Navigation */}
