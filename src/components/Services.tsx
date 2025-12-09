@@ -30,15 +30,11 @@ const Services = () => {
       <div className="container px-4">
         <AnimatedSection>
           <div className="max-w-2xl mb-20">
-            <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4">
-              What We Do
-            </p>
-            <h2 className="font-playfair text-4xl md:text-5xl font-normal text-foreground mb-6">
-              Our Services
-            </h2>
+            <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4">What We Do</p>
+            <h2 className="font-playfair text-4xl md:text-5xl font-normal text-foreground mb-6">Our Services</h2>
             <div className="w-16 h-px bg-primary mb-6" />
             <p className="font-inter text-lg text-muted-foreground leading-relaxed">
-              Comprehensive building and carpentry solutions for residential and commercial projects.
+              Comprehensive building and carpentry solutions for Residential, Commercial and Mining projects.
             </p>
           </div>
         </AnimatedSection>
@@ -50,12 +46,8 @@ const Services = () => {
               <AnimatedSection key={index} delay={index * 100}>
                 <div className="group bg-background p-10 md:p-12 hover:bg-muted/30 transition-colors duration-500">
                   <Icon className="h-8 w-8 text-primary mb-8" strokeWidth={1.5} />
-                  <h3 className="font-playfair text-2xl font-normal text-foreground mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="font-inter text-base text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
+                  <h3 className="font-playfair text-2xl font-normal text-foreground mb-4">{service.title}</h3>
+                  <p className="font-inter text-base text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
               </AnimatedSection>
             );
