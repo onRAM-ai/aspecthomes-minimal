@@ -2,96 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Clean & Minimal Design System
+   - Generous whitespace
+   - Subtle dividers and borders
+   - Understated elegance
+   - Focus on typography and spacing
 */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 40 4% 42%;
+    --foreground: 220 10% 20%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 40 4% 42%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 10% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 40 4% 42%;
+    --popover-foreground: 220 10% 20%;
 
     --primary: 134 57% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 40 4% 42%;
+    --secondary: 0 0% 98%;
+    --secondary-foreground: 220 10% 20%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 51%;
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 8% 50%;
 
-    --accent: 134 57% 45%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 134 40% 92%;
+    --accent-foreground: 134 57% 35%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 220 10% 92%;
+    --input: 220 10% 92%;
     --ring: 134 57% 45%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
     
     /* Custom brand colors */
     --brand-green: 134 57% 45%;
-    --brand-grey: 0 0% 51%;
-    --brand-grey-dark: 40 4% 42%;
+    --brand-grey: 220 8% 50%;
+    --brand-grey-dark: 220 10% 20%;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 10% 20%;
+    --sidebar-primary: 220 10% 10%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 96%;
+    --sidebar-accent-foreground: 220 10% 20%;
+    --sidebar-border: 220 10% 92%;
+    --sidebar-ring: 134 57% 45%;
   }
 
   .dark {
-    --background: 40 4% 15%;
+    --background: 220 15% 8%;
     --foreground: 0 0% 95%;
 
-    --card: 40 4% 18%;
+    --card: 220 15% 10%;
     --card-foreground: 0 0% 95%;
 
-    --popover: 40 4% 15%;
+    --popover: 220 15% 8%;
     --popover-foreground: 0 0% 95%;
 
     --primary: 134 57% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 4% 22%;
+    --secondary: 220 15% 12%;
     --secondary-foreground: 0 0% 95%;
 
-    --muted: 40 4% 22%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 8% 60%;
 
-    --accent: 134 57% 45%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 134 40% 15%;
+    --accent-foreground: 134 57% 60%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 4% 25%;
-    --input: 40 4% 25%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
     --ring: 134 57% 45%;
     
     --brand-green: 134 57% 45%;
-    --brand-grey: 0 0% 51%;
-    --brand-grey-dark: 40 4% 42%;
+    --brand-grey: 220 8% 60%;
+    --brand-grey-dark: 0 0% 95%;
   }
 }
 
@@ -101,6 +97,32 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+
+  /* Clean minimal typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair tracking-tight;
+  }
+}
+
+@layer utilities {
+  /* Minimal underline animation for links */
+  .link-underline {
+    @apply relative;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300;
+  }
+  
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Subtle separator */
+  .separator-subtle {
+    @apply h-px bg-border w-full;
   }
 }

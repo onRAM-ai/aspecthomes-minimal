@@ -26,29 +26,31 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 md:py-32 bg-background">
+    <section id="services" className="py-32 md:py-40 bg-background">
       <div className="container px-4">
         <AnimatedSection>
-          <div className="text-center mb-20">
-            <h2 className="font-playfair text-5xl md:text-6xl font-bold text-foreground mb-6">
+          <div className="max-w-2xl mb-20">
+            <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4">
+              What We Do
+            </p>
+            <h2 className="font-playfair text-4xl md:text-5xl font-normal text-foreground mb-6">
               Our Services
             </h2>
-            <p className="font-inter text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive building and carpentry solutions for residential and commercial projects
+            <div className="w-16 h-px bg-primary mb-6" />
+            <p className="font-inter text-lg text-muted-foreground leading-relaxed">
+              Comprehensive building and carpentry solutions for residential and commercial projects.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <AnimatedSection key={index} delay={index * 100}>
-                <div className="group bg-card rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-border/50">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-playfair text-2xl font-semibold text-foreground mb-3">
+                <div className="group bg-background p-10 md:p-12 hover:bg-muted/30 transition-colors duration-500">
+                  <Icon className="h-8 w-8 text-primary mb-8" strokeWidth={1.5} />
+                  <h3 className="font-playfair text-2xl font-normal text-foreground mb-4">
                     {service.title}
                   </h3>
                   <p className="font-inter text-base text-muted-foreground leading-relaxed">
