@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/aspect-homes-logo.png";
 
@@ -61,57 +61,47 @@ const Navigation = () => {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
-            ? "bg-background/98 backdrop-blur-lg shadow-lg border-b border-border/40 py-4"
-            : "bg-transparent py-6"
+            ? "bg-background border-b border-border py-4"
+            : "bg-background/0 py-6"
         )}
       >
         <div className="container px-4">
           <div className="flex items-center justify-between">
-            {/* Logo/Brand */}
+            {/* Logo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
+              className="transition-opacity hover:opacity-70"
             >
               <img 
                 src={logo} 
                 alt="Aspect Homes" 
-                className="h-12 md:h-14 w-auto"
+                className="h-10 md:h-12 w-auto"
               />
             </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-10">
+            <div className="hidden md:flex items-center gap-12">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  aria-current={activeSection === link.id ? "page" : undefined}
                   className={cn(
-                    "relative font-inter font-medium group transition-colors duration-300",
+                    "font-inter text-sm tracking-wide transition-colors duration-300 link-underline",
                     activeSection === link.id
                       ? "text-primary"
-                      : isScrolled 
-                        ? "text-muted-foreground hover:text-foreground"
-                        : "text-white/90 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {link.label}
-                  <span 
-                    className={cn(
-                      "absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-300",
-                      activeSection === link.id ? "w-full" : "w-0 group-hover:w-full"
-                    )}
-                  />
                 </button>
               ))}
               <Button
                 onClick={() => scrollToSection("contact")}
-                size="lg"
-                className="gap-2 rounded-full group"
+                size="sm"
+                className="text-sm px-6"
               >
-                <Phone className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
                 Get In Touch
               </Button>
             </div>
@@ -119,89 +109,48 @@ const Navigation = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={cn(
-                "md:hidden p-2 rounded-lg transition-all duration-300",
-                isScrolled
-                  ? "hover:bg-secondary/80"
-                  : "hover:bg-white/10 backdrop-blur-sm"
-              )}
+              className="md:hidden p-2 text-foreground"
               aria-label="Toggle menu"
-              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
-                <X className={cn("h-6 w-6", isScrolled ? "text-foreground" : "text-white")} />
+                <X className="h-6 w-6" />
               ) : (
-                <Menu className={cn("h-6 w-6", isScrolled ? "text-foreground" : "text-white")} />
+                <Menu className="h-6 w-6" />
               )}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Backdrop */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden transition-opacity duration-300",
-          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-        onClick={() => setIsMobileMenuOpen(false)}
-      />
-
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed top-0 right-0 bottom-0 z-50 w-[280px] bg-background shadow-2xl md:hidden transition-transform duration-300 ease-out",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          "fixed inset-0 z-40 bg-background md:hidden transition-opacity duration-300",
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
       >
-        <div className="flex flex-col h-full">
-          {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between p-6 border-b border-border/50">
-            <img src={logo} alt="Aspect Homes" className="h-10 w-auto" />
+        <div className="flex flex-col items-center justify-center h-full gap-8">
+          {navLinks.map((link) => (
             <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 hover:bg-secondary/80 rounded-lg transition-colors"
-              aria-label="Close menu"
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              className={cn(
+                "font-playfair text-3xl transition-colors",
+                activeSection === link.id
+                  ? "text-primary"
+                  : "text-foreground hover:text-primary"
+              )}
             >
-              <X className="h-6 w-6" />
+              {link.label}
             </button>
-          </div>
-
-          {/* Mobile Menu Content */}
-          <div className="flex flex-col gap-2 p-6 flex-1">
-            {navLinks.map((link, index) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                aria-current={activeSection === link.id ? "page" : undefined}
-                className={cn(
-                  "text-left py-3 px-4 rounded-lg text-lg font-medium transition-all duration-300",
-                  activeSection === link.id
-                    ? "text-primary bg-primary/10"
-                    : "text-foreground hover:text-primary hover:bg-secondary/50",
-                  isMobileMenuOpen && `animate-fade-in`
-                )}
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                  animationFillMode: "backwards"
-                }}
-              >
-                {link.label}
-              </button>
-            ))}
-            <Button
-              size="lg"
-              onClick={() => scrollToSection("contact")}
-              className="gap-2 w-full mt-4 rounded-full animate-fade-in"
-              style={{
-                animationDelay: `${navLinks.length * 50}ms`,
-                animationFillMode: "backwards"
-              }}
-            >
-              <Phone className="h-5 w-5" />
-              Get In Touch
-            </Button>
-          </div>
+          ))}
+          <Button
+            size="lg"
+            onClick={() => scrollToSection("contact")}
+            className="mt-4"
+          >
+            Get In Touch
+          </Button>
         </div>
       </div>
     </>

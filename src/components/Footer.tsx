@@ -8,63 +8,54 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-12 border-t border-border bg-secondary/20">
+    <footer className="py-20 border-t border-border bg-background">
       <div className="container px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
+          <div className="md:col-span-2">
             <img 
               src={logo} 
               alt="Aspect Homes" 
-              className="h-12 w-auto mb-4"
+              className="h-10 w-auto mb-6"
             />
-            <p className="font-inter text-sm text-muted-foreground">
-              Licensed Builders & Carpenters<br />
-              Goldfields, Western Australia
+            <p className="font-inter text-base text-muted-foreground leading-relaxed max-w-sm">
+              Licensed Builders & Carpenters serving the Goldfields region of Western Australia with quality craftsmanship.
             </p>
           </div>
 
+          {/* Navigation */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold text-foreground mb-4">Quick Links</h3>
-            <nav className="flex flex-col gap-2">
-              <button 
-                onClick={() => scrollToSection("home")}
-                className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => scrollToSection("services")}
-                className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-              >
-                Services
-              </button>
-              <button 
-                onClick={() => scrollToSection("gallery")}
-                className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-              >
-                Gallery
-              </button>
-              <button 
-                onClick={() => scrollToSection("contact")}
-                className="font-inter text-sm text-muted-foreground hover:text-primary transition-colors text-left"
-              >
-                Contact
-              </button>
+            <p className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-6">
+              Navigation
+            </p>
+            <nav className="flex flex-col gap-3">
+              {["Home", "Services", "Gallery", "Contact"].map((item) => (
+                <button 
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="font-inter text-base text-foreground hover:text-primary transition-colors text-left link-underline w-fit"
+                >
+                  {item}
+                </button>
+              ))}
             </nav>
           </div>
 
+          {/* Contact */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold text-foreground mb-4">Contact Info</h3>
-            <div className="flex flex-col gap-2 font-inter text-sm text-muted-foreground">
-              <p>Phone: 0412 345 678</p>
-              <p>Email: info@aspecthomes.com.au</p>
+            <p className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-6">
+              Contact
+            </p>
+            <div className="flex flex-col gap-3 font-inter text-base text-foreground">
+              <p>0412 345 678</p>
+              <p>info@aspecthomes.com.au</p>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border text-center">
+        <div className="pt-8 border-t border-border">
           <p className="font-inter text-sm text-muted-foreground">
-            © {currentYear} Aspect Homes and Developments PTY LTD. All rights reserved.
+            © {currentYear} Aspect Homes and Developments PTY LTD
           </p>
         </div>
       </div>
