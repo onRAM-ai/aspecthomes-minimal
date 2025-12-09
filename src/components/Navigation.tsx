@@ -64,7 +64,7 @@ const Navigation = () => {
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
             ? "bg-background border-b border-border py-4"
-            : "bg-background/0 py-6"
+            : "bg-background py-6"
         )}
       >
         <div className="container px-4">

@@ -49,7 +49,7 @@ const Hero = () => {
           </div>
 
           {/* Image Right */}
-          <div className="order-1 lg:order-2 relative">
+          <div className="order-1 lg:order-2 relative pt-16 lg:pt-0">
             <div className="aspect-[4/5] lg:aspect-[3/4] overflow-hidden">
               <img
                 src={heroImage}
