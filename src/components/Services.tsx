@@ -14,8 +14,8 @@ const services = [
   },
   {
     icon: Bath,
-    title: "Bathrooms & Carpentry",
-    description: "Specialist bathroom renovations and custom carpentry solutions.",
+    title: "Bathrooms & Kitchens",
+    description: "Specialist bathroom and kitchen renovations tailored to your needs.",
   },
   {
     icon: Warehouse,
