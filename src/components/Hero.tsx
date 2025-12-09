@@ -26,23 +26,15 @@ const Hero = () => {
             </h1>
             <div className="w-16 h-px bg-primary mb-8" />
             <p className="font-inter text-lg text-muted-foreground mb-12 leading-relaxed">
-              Quality craftsmanship for new homes, extensions, and renovations across the Goldfields region. We bring your vision to life with precision and care.
+              Quality craftsmanship for new homes, extensions, and renovations across Kalgoorlie and the surrounding
+              Goldfields regions. We bring your vision to life with precision and care.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="text-base px-8 py-6 group"
-                onClick={scrollToContact}
-              >
+              <Button size="lg" className="text-base px-8 py-6 group" onClick={scrollToContact}>
                 Get In Touch
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-base px-8 py-6"
-                onClick={scrollToServices}
-              >
+              <Button variant="outline" size="lg" className="text-base px-8 py-6" onClick={scrollToServices}>
                 Our Services
               </Button>
             </div>
