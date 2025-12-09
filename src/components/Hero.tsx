@@ -14,8 +14,8 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center">
       {/* Split Layout - Image Right */}
-      <div className="container px-4 py-32 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center min-h-[80vh]">
+      <div className="container px-4 py-16 lg:py-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
           {/* Content Left */}
           <div className="order-2 lg:order-1 max-w-xl">
             <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-8">
@@ -41,7 +41,7 @@ const Hero = () => {
           </div>
 
           {/* Image Right */}
-          <div className="order-1 lg:order-2 relative pt-16 lg:pt-0">
+          <div className="order-1 lg:order-2 relative">
             <div className="aspect-[4/5] lg:aspect-[3/4] overflow-hidden">
               <img
                 src={heroImage}
@@ -50,7 +50,7 @@ const Hero = () => {
               />
             </div>
             {/* Subtle accent line */}
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-primary/30" />
+            <div className="absolute bottom-0 left-0 w-24 h-24 border-l-2 border-b-2 border-primary/30" />
           </div>
         </div>
       </div>
