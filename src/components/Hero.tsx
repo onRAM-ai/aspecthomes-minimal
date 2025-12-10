@@ -15,7 +15,7 @@ const Hero = () => {
     <section id="home" className="relative flex items-center">
       {/* Split Layout - Image Right */}
       <div className="container px-4 py-16 lg:py-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[50vh]">
           {/* Content Left */}
           <div className="order-2 lg:order-1 max-w-xl">
             <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-8">
@@ -41,12 +41,12 @@ const Hero = () => {
           </div>
 
           {/* Image Right */}
-          <div className="order-1 lg:order-2 relative">
+          <div className="order-1 lg:order-2 relative overflow-hidden">
             <div className="aspect-[4/5] lg:aspect-[3/4] overflow-hidden relative">
               <img
                 src={heroImage}
                 alt="Quality home construction by Aspect Homes"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover scale-110"
               />
             </div>
           </div>
