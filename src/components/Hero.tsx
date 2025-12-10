@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative flex items-center">
       {/* Split Layout - Image Right */}
-      <div className="container px-4 pt-8 pb-4 lg:pt-4 lg:pb-2">
+      <div className="container px-4 pt-8 pb-1 lg:pt-4 lg:pb-0">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
           {/* Content Left */}
           <div className="order-2 lg:order-1 max-w-xl">
