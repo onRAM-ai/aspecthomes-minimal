@@ -26,7 +26,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-32 md:py-40 bg-background">
+    <section id="services" className="py-20 md:py-24 bg-background">
       <div className="container px-4">
         <AnimatedSection>
           <div className="max-w-2xl mb-20">

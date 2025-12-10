@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center">
+    <section id="home" className="relative flex items-center">
       {/* Split Layout - Image Right */}
       <div className="container px-4 py-16 lg:py-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
