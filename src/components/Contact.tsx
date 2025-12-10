@@ -36,7 +36,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 md:py-40 bg-background">
+    <section id="contact" className="py-16 md:py-20 bg-background">
       <div className="container px-4">
         <AnimatedSection>
           <div className="max-w-2xl mb-20">
