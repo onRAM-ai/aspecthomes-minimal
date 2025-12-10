@@ -46,10 +46,8 @@ const Hero = () => {
               <img
                 src={heroImage}
                 alt="Quality home construction by Aspect Homes"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
-              {/* Subtle accent line */}
-              <div className="absolute bottom-0 left-0 w-24 h-24 border-l-2 border-b-2 border-primary/30" />
             </div>
           </div>
         </div>
