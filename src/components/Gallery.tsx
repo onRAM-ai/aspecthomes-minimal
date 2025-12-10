@@ -26,7 +26,7 @@ const galleryImages = [
 
 const Gallery = () => {
   return (
-    <section id="gallery" className="py-16 md:py-20 bg-muted/30">
+    <section id="gallery" className="py-32 md:py-40 bg-muted/30">
       <div className="container px-4">
         <AnimatedSection>
           <div className="max-w-2xl mb-20">
