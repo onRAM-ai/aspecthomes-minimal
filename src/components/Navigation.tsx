@@ -35,7 +35,7 @@ const Navigation = () => {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    const sections = ["home", "services", "gallery", "contact"];
+    const sections = ["home", "services", "testimonials", "contact"];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -53,7 +53,7 @@ const Navigation = () => {
   const navLinks = [
     { label: "Home", id: "home" },
     { label: "Services", id: "services" },
-    { label: "Gallery", id: "gallery" },
+    { label: "Testimonials", id: "testimonials" },
     { label: "Contact", id: "contact" },
   ];
 
