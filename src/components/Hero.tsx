@@ -15,7 +15,7 @@ const Hero = () => {
     <section id="home" className="relative flex items-center">
       {/* Split Layout - Image Right */}
       <div className="container px-4 pt-8 pb-0 lg:pt-4">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[60vh]">
           {/* Content Left */}
           <div className="order-2 lg:order-1 max-w-xl">
             <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-8">

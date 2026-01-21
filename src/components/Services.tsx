@@ -29,7 +29,7 @@ const Services = () => {
     <section id="services" className="pt-2 pb-10 md:pt-3 md:pb-12 bg-background">
       <div className="container px-4">
         <AnimatedSection>
-          <div className="max-w-2xl mb-20">
+          <div className="max-w-2xl mb-12">
             <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-4">What We Do</p>
             <h2 className="font-playfair text-4xl md:text-5xl font-normal text-foreground mb-6">Our Services</h2>
             <div className="w-16 h-px bg-primary mb-6" />
