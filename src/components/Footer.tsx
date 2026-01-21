@@ -1,4 +1,5 @@
 import logo from "@/assets/aspect-homes-logo.png";
+import masterBuildersLogo from "@/assets/master-builders-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,11 +14,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-2">
-            <img 
-              src={logo} 
-              alt="Aspect Homes" 
-              className="h-10 w-auto mb-6"
-            />
+            <div className="flex items-center gap-6 mb-6">
+              <img 
+                src={logo} 
+                alt="Aspect Homes" 
+                className="h-10 w-auto"
+              />
+              <img 
+                src={masterBuildersLogo} 
+                alt="Master Builders Western Australia Member" 
+                className="h-12 w-auto"
+              />
+            </div>
             <p className="font-inter text-base text-muted-foreground leading-relaxed max-w-sm">
               Licensed Builders & Carpenters serving the Goldfields region of Western Australia with quality craftsmanship.
             </p>
