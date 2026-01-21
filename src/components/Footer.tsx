@@ -1,3 +1,4 @@
+import { Facebook, Instagram } from "lucide-react";
 import logo from "@/assets/aspect-homes-logo.png";
 import masterBuildersLogo from "@/assets/master-builders-logo.png";
 
@@ -57,6 +58,28 @@ const Footer = () => {
             <div className="flex flex-col gap-3 font-inter text-base text-foreground">
               <p>0412 345 678</p>
               <p>info@aspecthomes.com.au</p>
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="flex items-center gap-4 mt-6">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61568481675823"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={24} />
+              </a>
+              <a 
+                href="https://www.instagram.com/aspect.homes.kal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={24} />
+              </a>
             </div>
           </div>
         </div>
