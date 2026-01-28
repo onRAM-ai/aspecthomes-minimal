@@ -56,8 +56,8 @@ const Footer = () => {
               Contact
             </p>
             <div className="flex flex-col gap-3 font-inter text-base text-foreground">
-              <p>0412 345 678</p>
-              <p>info@aspecthomes.com.au</p>
+              <p>0409 528 854</p>
+              <p>admin@aspect-homes.com</p>
             </div>
             
             {/* Social Media Links */}
