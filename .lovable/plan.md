@@ -1,49 +1,28 @@
 
 
-## Plan: Update Testimonials Content
+## Plan: Always Show Navigation Border
 
 ### Overview
-Replace the three existing placeholder testimonials with the real client testimonials provided. All testimonials have 5-star ratings.
+Make the grey border line on the navigation bar always visible, regardless of scroll position.
 
-### File to Update
+### Current Behavior
+The navigation currently only shows the bottom border after scrolling down 50 pixels. When at the top of the page, no border is displayed.
 
-**`src/components/Testimonials.tsx`**
+### Change Required
 
-### Changes
+**File:** `src/components/Navigation.tsx`
 
-**Lines 4-23** - Replace the testimonials array with:
+**Lines 64-69** - Update the nav element's className:
 
-| # | Name | Quote |
-|---|------|-------|
-| 1 | Steph McMillan | Helped my husband and I with our building inspection when buying our first home. Friendly, reliable and super helpful. Cannot recommend these guys enough. |
-| 2 | Aaron Curtis | Very professional and knowledgeable. Was never anything that was too hard or not doable. Transformed our standard copy paste house to something unique and our style. Produced top quality products with their top quality craftsmanship. Always answered phone calls and emails. Was never left wondering. |
-| 3 | Kylie Ekins | The team at Aspect Homes were amazing. Very responsive to enquiries, knowledgeable, quick and kind. The team smashed out the job and even cleaned up after themselves. Thank you for the work on our older home. |
+Move `border-b border-border` outside of the conditional so it always applies:
 
-### Technical Details
-
-The `project` field will be removed from the data structure since the real testimonials don't include project types. The component will also be updated to remove the project type display from the attribution section.
-
-**Updated testimonials array:**
 ```tsx
-const testimonials = [
-  {
-    quote: "Helped my husband and I with our building inspection when buying our first home. Friendly, reliable and super helpful. Cannot recommend these guys enough.",
-    name: "Steph McMillan",
-    rating: 5,
-  },
-  {
-    quote: "Very professional and knowledgeable. Was never anything that was too hard or not doable. Transformed our standard copy paste house to something unique and our style. Produced top quality products with their top quality craftsmanship. Always answered phone calls and emails. Was never left wondering.",
-    name: "Aaron Curtis",
-    rating: 5,
-  },
-  {
-    quote: "The team at Aspect Homes were amazing. Very responsive to enquiries, knowledgeable, quick and kind. The team smashed out the job and even cleaned up after themselves. Thank you for the work on our older home.",
-    name: "Kylie Ekins",
-    rating: 5,
-  },
-];
+className={cn(
+  "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background border-b border-border",
+  isScrolled ? "py-4" : "py-6"
+)}
 ```
 
-**Attribution section update (lines 64-72):**
-Remove the project type paragraph since it's no longer in the data, keeping just the client name.
+### Result
+The grey border line will always be visible at the bottom of the navigation bar, whether you're at the top of the page or have scrolled down. The only thing that changes on scroll is the padding (from `py-6` to `py-4`).
 
