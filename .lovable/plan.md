@@ -1,47 +1,49 @@
 
 
-## Plan: Update Contact Information
+## Plan: Update Testimonials Content
 
 ### Overview
-Update the email address and phone number across the website to reflect the correct business contact details.
+Replace the three existing placeholder testimonials with the real client testimonials provided. All testimonials have 5-star ratings.
 
-### Changes Required
+### File to Update
 
----
+**`src/components/Testimonials.tsx`**
 
-### 1. Update Footer Component
+### Changes
 
-**File:** `src/components/Footer.tsx`
+**Lines 4-23** - Replace the testimonials array with:
 
-**Lines 61-62** - Update contact details:
+| # | Name | Quote |
+|---|------|-------|
+| 1 | Steph McMillan | Helped my husband and I with our building inspection when buying our first home. Friendly, reliable and super helpful. Cannot recommend these guys enough. |
+| 2 | Aaron Curtis | Very professional and knowledgeable. Was never anything that was too hard or not doable. Transformed our standard copy paste house to something unique and our style. Produced top quality products with their top quality craftsmanship. Always answered phone calls and emails. Was never left wondering. |
+| 3 | Kylie Ekins | The team at Aspect Homes were amazing. Very responsive to enquiries, knowledgeable, quick and kind. The team smashed out the job and even cleaned up after themselves. Thank you for the work on our older home. |
 
-| Current | New |
-|---------|-----|
-| `0412 345 678` | `0409 528 854` |
-| `info@aspecthomes.com.au` | `admin@aspect-homes.com` |
+### Technical Details
 
----
+The `project` field will be removed from the data structure since the real testimonials don't include project types. The component will also be updated to remove the project type display from the attribution section.
 
-### 2. Update Contact Component
+**Updated testimonials array:**
+```tsx
+const testimonials = [
+  {
+    quote: "Helped my husband and I with our building inspection when buying our first home. Friendly, reliable and super helpful. Cannot recommend these guys enough.",
+    name: "Steph McMillan",
+    rating: 5,
+  },
+  {
+    quote: "Very professional and knowledgeable. Was never anything that was too hard or not doable. Transformed our standard copy paste house to something unique and our style. Produced top quality products with their top quality craftsmanship. Always answered phone calls and emails. Was never left wondering.",
+    name: "Aaron Curtis",
+    rating: 5,
+  },
+  {
+    quote: "The team at Aspect Homes were amazing. Very responsive to enquiries, knowledgeable, quick and kind. The team smashed out the job and even cleaned up after themselves. Thank you for the work on our older home.",
+    name: "Kylie Ekins",
+    rating: 5,
+  },
+];
+```
 
-**File:** `src/components/Contact.tsx`
-
-**Line 66** - Update phone number:
-- From: `0412 345 678`
-- To: `0409 528 854`
-
-**Line 75** - Update email address:
-- From: `info@aspecthomes.com.au`
-- To: `admin@aspect-homes.com`
-
----
-
-### Summary
-
-| Location | Field | New Value |
-|----------|-------|-----------|
-| Footer | Phone | 0409 528 854 |
-| Footer | Email | admin@aspect-homes.com |
-| Contact Section | Phone | 0409 528 854 |
-| Contact Section | Email | admin@aspect-homes.com |
+**Attribution section update (lines 64-72):**
+Remove the project type paragraph since it's no longer in the data, keeping just the client name.
 
