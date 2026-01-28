@@ -5,6 +5,7 @@ import kitchen from "@/assets/gallery/kitchen.png";
 import theater from "@/assets/gallery/theater.png";
 import patio from "@/assets/gallery/patio.png";
 import fencing from "@/assets/gallery/fencing.png";
+import stairs from "@/assets/gallery/stairs.png";
 
 const galleryImages = [
   { src: bathroom, alt: "Modern bathroom renovation", title: "Bathroom" },
@@ -12,6 +13,7 @@ const galleryImages = [
   { src: theater, alt: "Home theater room", title: "Theater Room" },
   { src: patio, alt: "Covered patio with landscaping", title: "Patio" },
   { src: fencing, alt: "Modern slat fencing installation", title: "Fencing" },
+  { src: stairs, alt: "Custom timber staircase with steel railings", title: "Stairs" },
 ];
 
 const Gallery = () => {
