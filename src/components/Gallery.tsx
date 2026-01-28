@@ -55,7 +55,10 @@ const Gallery = () => {
             </AnimatedSection>
           ))}
           <AnimatedSection delay={galleryImages.length * 100}>
-            <div className="group relative overflow-hidden border-2 border-dashed border-border/50 bg-muted/20 hover:bg-muted/40 transition-colors duration-300">
+            <a
+              href="#contact"
+              className="group relative overflow-hidden border-2 border-dashed border-border/50 bg-muted/20 hover:bg-muted/40 transition-colors duration-300 cursor-pointer block"
+            >
               <div className="aspect-[4/3] flex flex-col items-center justify-center gap-3">
                 <div className="w-10 h-10 rounded-full border-2 border-dashed border-primary/50 flex items-center justify-center group-hover:border-primary transition-colors duration-300">
                   <Plus className="w-5 h-5 text-primary/50 group-hover:text-primary transition-colors duration-300" />
@@ -64,7 +67,7 @@ const Gallery = () => {
                   More projects coming soon
                 </p>
               </div>
-            </div>
+            </a>
           </AnimatedSection>
         </div>
       </div>
