@@ -1,30 +1,47 @@
 
 
-## Plan: Remove Outdoor Living Photo from Gallery
+## Plan: Add Fencing Photo to Gallery
 
 ### Overview
-Remove the "Outdoor Living" (backyard) photo from the gallery. This will leave 4 project images plus the "More projects coming soon" placeholder tile, for a total of 5 tiles.
+Add the uploaded fencing image to the gallery as a new project showcase titled "Fencing". This will bring the gallery to 5 project images plus the "More projects coming soon" tile.
 
-### File to Update
+### Changes Required
 
-**`src/components/Gallery.tsx`**
+**1. Copy Image to Assets**
 
-### Changes
+Copy the uploaded image to the gallery assets folder:
+- From: `user-uploads://fencing.png`
+- To: `src/assets/gallery/fencing.png`
 
-1. **Remove the backyard import** (line 3)
-   - Delete: `import backyard from "@/assets/gallery/backyard.png";`
+**2. Update Gallery Component**
 
-2. **Remove the Outdoor Living entry from galleryImages array** (line 10)
-   - Delete: `{ src: backyard, alt: "Outdoor entertaining area", title: "Outdoor Living" },`
+**File:** `src/components/Gallery.tsx`
+
+Add the fencing image import and include it in the gallery array:
+
+```tsx
+// Add import (after other gallery imports)
+import fencing from "@/assets/gallery/fencing.png";
+
+// Add to galleryImages array
+const galleryImages = [
+  { src: bathroom, alt: "Modern bathroom renovation", title: "Bathroom" },
+  { src: kitchen, alt: "Custom kitchen renovation", title: "Kitchen" },
+  { src: theater, alt: "Home theater room", title: "Theater Room" },
+  { src: patio, alt: "Covered patio with landscaping", title: "Patio" },
+  { src: fencing, alt: "Modern slat fencing installation", title: "Fencing" },
+];
+```
 
 ### Result
 
-The gallery will display:
+The gallery will display 6 tiles:
 - Bathroom
 - Kitchen
 - Theater Room
 - Patio
+- **Fencing** (new)
 - "More projects coming soon" tile
 
-This maintains a balanced 5-tile layout that works well with the 3-column desktop grid (3 + 2 tiles) and 2-column mobile grid (2 + 2 + 1 tiles).
+This creates a balanced 6-tile layout that works perfectly with the 3-column desktop grid (2 full rows) and 2-column mobile grid (3 full rows).
 
