@@ -62,7 +62,7 @@ const Contact = () => {
                 <p className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
                   Phone
                 </p>
-                <p className="font-inter text-lg text-foreground">0412 345 678</p>
+                <p className="font-inter text-lg text-foreground">0409 528 854</p>
               </div>
             </div>
 
@@ -72,7 +72,7 @@ const Contact = () => {
                 <p className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-2">
                   Email
                 </p>
-                <p className="font-inter text-lg text-foreground">info@aspecthomes.com.au</p>
+                <p className="font-inter text-lg text-foreground">admin@aspect-homes.com</p>
               </div>
             </div>
 
