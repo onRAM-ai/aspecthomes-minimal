@@ -62,10 +62,8 @@ const Navigation = () => {
     <>
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "bg-background border-b border-border py-4"
-            : "bg-background py-6"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background border-b border-border",
+          isScrolled ? "py-4" : "py-6"
         )}
       >
         <div className="container px-4">
