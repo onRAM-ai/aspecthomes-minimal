@@ -38,7 +38,7 @@ const Footer = () => {
               Navigation
             </p>
             <nav className="flex flex-col gap-3">
-              {["Home", "Services", "Testimonials", "Contact"].map((item) => (
+              {["Home", "Services", "Testimonials", "Gallery", "Contact"].map((item) => (
                 <button 
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
