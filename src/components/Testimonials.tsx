@@ -3,21 +3,18 @@ import AnimatedSection from "./AnimatedSection";
 
 const testimonials = [
   {
-    quote: "Aspect Homes delivered our dream home with exceptional attention to detail. The team was professional from start to finish.",
-    name: "Sarah & Michael T.",
-    project: "New Home Build",
+    quote: "Helped my husband and I with our building inspection when buying our first home. Friendly, reliable and super helpful. Cannot recommend these guys enough.",
+    name: "Steph McMillan",
     rating: 5,
   },
   {
-    quote: "Our bathroom renovation exceeded expectations. Quality workmanship and great communication throughout the project.",
-    name: "David R.",
-    project: "Bathroom Renovation",
+    quote: "Very professional and knowledgeable. Was never anything that was too hard or not doable. Transformed our standard copy paste house to something unique and our style. Produced top quality products with their top quality craftsmanship. Always answered phone calls and emails. Was never left wondering.",
+    name: "Aaron Curtis",
     rating: 5,
   },
   {
-    quote: "Couldn't be happier with our new patio and carport. Built to last in the Goldfields conditions.",
-    name: "The Johnson Family",
-    project: "Outdoor Structures",
+    quote: "The team at Aspect Homes were amazing. Very responsive to enquiries, knowledgeable, quick and kind. The team smashed out the job and even cleaned up after themselves. Thank you for the work on our older home.",
+    name: "Kylie Ekins",
     rating: 5,
   },
 ];
@@ -63,11 +60,8 @@ const Testimonials = () => {
 
                   {/* Attribution */}
                   <div className="mt-auto pt-6 border-t border-border/30">
-                    <p className="font-inter text-sm font-medium text-foreground mb-1">
+                    <p className="font-inter text-sm font-medium text-foreground">
                       — {testimonial.name}
-                    </p>
-                    <p className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground">
-                      {testimonial.project}
                     </p>
                   </div>
                 </div>
