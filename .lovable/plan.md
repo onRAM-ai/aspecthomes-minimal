@@ -1,53 +1,54 @@
 
 
-## Plan: Add "More Projects Coming Soon" Tile to Gallery
+## Plan: Enhance "Coming Soon" Tile with Dashed Border and Plus Icon
 
 ### Overview
-Add a 6th tile to the gallery grid that displays "more projects coming soon" text, filling the empty spot in the current layout.
+Style the placeholder tile with a dashed border and a small plus icon to make it feel more intentional and visually indicate that more content is coming. Uses existing brand colors for consistency.
 
-### Current Layout
-The gallery has 5 project images in a responsive grid:
-- **Desktop (3 columns):** 3 + 2 images = empty spot in row 2
-- **Mobile (2 columns):** 2 + 2 + 1 image = empty spot in row 3
-
-Adding a 6th tile will create a complete grid with no gaps.
-
-### File to Update
-
-**`src/components/Gallery.tsx`**
+### Current State
+The tile currently has:
+- Solid border (`border border-border/50`)
+- Plain muted background (`bg-muted/30`)
+- Simple text only
 
 ### Changes
 
-**Add placeholder tile after the gallery images loop (after line 47)**
+**File:** `src/components/Gallery.tsx`
 
-The new tile will:
-- Match the existing gallery tile dimensions (aspect ratio 4:3)
-- Use a subtle background with centered text
-- Include the same hover animation pattern
-- Be wrapped in `AnimatedSection` for consistent scroll animation
+**Update the placeholder tile (lines 56-63)**
+
+Replace the current placeholder with an enhanced version featuring:
+1. **Dashed border** - Changes from solid to dashed (`border-dashed`) for a "work in progress" feel
+2. **Plus icon** - Adds a Lucide Plus icon above the text
+3. **Brand color accent** - Uses the primary green for the icon
+4. **Subtle hover effect** - Adds a hover state that slightly brightens the background
 
 ### Visual Design
 
 ```text
-+------------------+------------------+------------------+
-|                  |                  |                  |
-|  Outdoor Living  |    Bathroom      |     Kitchen      |
-|                  |                  |                  |
-+------------------+------------------+------------------+
-|                  |                  |                  |
-|  Theater Room    |      Patio       |  More projects   |
-|                  |                  |  coming soon     |
-+------------------+------------------+------------------+
++----------------------+
+|                      |
+|         [+]          |  ← Plus icon in brand green
+|                      |
+|   More projects      |
+|    coming soon       |
+|                      |
+|   - - - - - - - -    |  ← Dashed border
++----------------------+
 ```
 
 ### Technical Details
 
-**New tile markup to add after the `galleryImages.map()` block:**
-
 ```tsx
+import { Plus } from "lucide-react";
+
+// Updated placeholder tile:
 <AnimatedSection delay={galleryImages.length * 100}>
-  <div className="group relative overflow-hidden border border-border/50 bg-muted/30">
-    <div className="aspect-[4/3] flex items-center justify-center">
+  <div className="group relative overflow-hidden border-2 border-dashed border-border/50 bg-muted/20 hover:bg-muted/40 transition-colors duration-300">
+    <div className="aspect-[4/3] flex flex-col items-center justify-center gap-3">
+      <div className="w-10 h-10 rounded-full border-2 border-dashed border-primary/50 flex items-center justify-center group-hover:border-primary transition-colors duration-300">
+        <Plus className="w-5 h-5 text-primary/50 group-hover:text-primary transition-colors duration-300" />
+      </div>
       <p className="font-inter text-sm text-muted-foreground text-center px-4">
         More projects coming soon
       </p>
@@ -57,5 +58,9 @@ The new tile will:
 ```
 
 ### Result
-The gallery will have 6 tiles total - 5 project images and 1 placeholder tile indicating more content is on the way. The placeholder will have a subtle muted background to differentiate it while maintaining visual consistency with the gallery style.
+The placeholder tile will have:
+- A dashed border that signals "more to come"
+- A circular plus icon using the brand green color
+- Subtle hover animations that make it feel interactive
+- Visual consistency with the gallery while being clearly distinct from actual project images
 
