@@ -1,13 +1,11 @@
 import { Plus } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
-import backyard from "@/assets/gallery/backyard.png";
 import bathroom from "@/assets/gallery/bathroom.png";
 import kitchen from "@/assets/gallery/kitchen.png";
 import theater from "@/assets/gallery/theater.png";
 import patio from "@/assets/gallery/patio.png";
 
 const galleryImages = [
-  { src: backyard, alt: "Outdoor entertaining area", title: "Outdoor Living" },
   { src: bathroom, alt: "Modern bathroom renovation", title: "Bathroom" },
   { src: kitchen, alt: "Custom kitchen renovation", title: "Kitchen" },
   { src: theater, alt: "Home theater room", title: "Theater Room" },
