@@ -1,28 +1,61 @@
 
 
-## Plan: Always Show Navigation Border
+## Plan: Add "More Projects Coming Soon" Tile to Gallery
 
 ### Overview
-Make the grey border line on the navigation bar always visible, regardless of scroll position.
+Add a 6th tile to the gallery grid that displays "more projects coming soon" text, filling the empty spot in the current layout.
 
-### Current Behavior
-The navigation currently only shows the bottom border after scrolling down 50 pixels. When at the top of the page, no border is displayed.
+### Current Layout
+The gallery has 5 project images in a responsive grid:
+- **Desktop (3 columns):** 3 + 2 images = empty spot in row 2
+- **Mobile (2 columns):** 2 + 2 + 1 image = empty spot in row 3
 
-### Change Required
+Adding a 6th tile will create a complete grid with no gaps.
 
-**File:** `src/components/Navigation.tsx`
+### File to Update
 
-**Lines 64-69** - Update the nav element's className:
+**`src/components/Gallery.tsx`**
 
-Move `border-b border-border` outside of the conditional so it always applies:
+### Changes
+
+**Add placeholder tile after the gallery images loop (after line 47)**
+
+The new tile will:
+- Match the existing gallery tile dimensions (aspect ratio 4:3)
+- Use a subtle background with centered text
+- Include the same hover animation pattern
+- Be wrapped in `AnimatedSection` for consistent scroll animation
+
+### Visual Design
+
+```text
++------------------+------------------+------------------+
+|                  |                  |                  |
+|  Outdoor Living  |    Bathroom      |     Kitchen      |
+|                  |                  |                  |
++------------------+------------------+------------------+
+|                  |                  |                  |
+|  Theater Room    |      Patio       |  More projects   |
+|                  |                  |  coming soon     |
++------------------+------------------+------------------+
+```
+
+### Technical Details
+
+**New tile markup to add after the `galleryImages.map()` block:**
 
 ```tsx
-className={cn(
-  "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background border-b border-border",
-  isScrolled ? "py-4" : "py-6"
-)}
+<AnimatedSection delay={galleryImages.length * 100}>
+  <div className="group relative overflow-hidden border border-border/50 bg-muted/30">
+    <div className="aspect-[4/3] flex items-center justify-center">
+      <p className="font-inter text-sm text-muted-foreground text-center px-4">
+        More projects coming soon
+      </p>
+    </div>
+  </div>
+</AnimatedSection>
 ```
 
 ### Result
-The grey border line will always be visible at the bottom of the navigation bar, whether you're at the top of the page or have scrolled down. The only thing that changes on scroll is the padding (from `py-6` to `py-4`).
+The gallery will have 6 tiles total - 5 project images and 1 placeholder tile indicating more content is on the way. The placeholder will have a subtle muted background to differentiate it while maintaining visual consistency with the gallery style.
 
