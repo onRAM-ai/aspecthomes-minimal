@@ -53,6 +53,15 @@ const Gallery = () => {
               </div>
             </AnimatedSection>
           ))}
+          <AnimatedSection delay={galleryImages.length * 100}>
+            <div className="group relative overflow-hidden border border-border/50 bg-muted/30">
+              <div className="aspect-[4/3] flex items-center justify-center">
+                <p className="font-inter text-sm text-muted-foreground text-center px-4">
+                  More projects coming soon
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
