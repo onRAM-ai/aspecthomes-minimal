@@ -1,3 +1,4 @@
+import { Plus } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import backyard from "@/assets/gallery/backyard.png";
 import bathroom from "@/assets/gallery/bathroom.png";
@@ -54,8 +55,11 @@ const Gallery = () => {
             </AnimatedSection>
           ))}
           <AnimatedSection delay={galleryImages.length * 100}>
-            <div className="group relative overflow-hidden border border-border/50 bg-muted/30">
-              <div className="aspect-[4/3] flex items-center justify-center">
+            <div className="group relative overflow-hidden border-2 border-dashed border-border/50 bg-muted/20 hover:bg-muted/40 transition-colors duration-300">
+              <div className="aspect-[4/3] flex flex-col items-center justify-center gap-3">
+                <div className="w-10 h-10 rounded-full border-2 border-dashed border-primary/50 flex items-center justify-center group-hover:border-primary transition-colors duration-300">
+                  <Plus className="w-5 h-5 text-primary/50 group-hover:text-primary transition-colors duration-300" />
+                </div>
                 <p className="font-inter text-sm text-muted-foreground text-center px-4">
                   More projects coming soon
                 </p>
