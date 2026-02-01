@@ -15,7 +15,7 @@ const services = [
   {
     icon: Bath,
     title: "Bathrooms & Kitchens",
-    description: "Specialist bathroom and kitchen renovations tailored to your needs.",
+    description: "Bathroom and kitchen renovations tailored to your needs.",
   },
   {
     icon: Warehouse,
