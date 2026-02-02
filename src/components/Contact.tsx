@@ -1,38 +1,102 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact";
 import AnimatedSection from "./AnimatedSection";
 
 const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateField = (field: keyof ContactFormData, value: string) => {
+    const result = contactFormSchema.shape[field].safeParse(value);
+    if (!result.success) {
+      setErrors((prev) => ({ ...prev, [field]: result.error.errors[0]?.message }));
+    } else {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleChange = (field: keyof ContactFormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error on change
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.message) {
+
+    // Validate all fields
+    const result = contactFormSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof ContactFormData;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
       toast({
-        title: "Please fill in all required fields",
+        title: "Please check the form",
+        description: "Some fields need your attention.",
         variant: "destructive",
       });
       return;
     }
 
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+    setIsSubmitting(true);
 
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    try {
+      const response = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to send message");
+      }
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setErrors({});
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -105,32 +169,52 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div>
                 <Label htmlFor="name" className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3 block">
-                  Name
+                  Name *
                 </Label>
                 <Input
                   id="name"
                   type="text"
                   placeholder="Your name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-12 px-0 border-0 border-b border-border rounded-none bg-transparent focus-visible:ring-0 focus-visible:border-primary"
-                  required
+                  onChange={(e) => handleChange("name", e.target.value)}
+                  onBlur={(e) => validateField("name", e.target.value)}
+                  className={`h-12 px-0 border-0 border-b rounded-none bg-transparent focus-visible:ring-0 ${
+                    errors.name ? "border-destructive" : "border-border focus-visible:border-primary"
+                  }`}
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
                 />
+                {errors.name && (
+                  <p id="name-error" className="mt-2 text-sm text-destructive">
+                    {errors.name}
+                  </p>
+                )}
               </div>
 
               <div>
                 <Label htmlFor="email" className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3 block">
-                  Email
+                  Email *
                 </Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="your.email@example.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="h-12 px-0 border-0 border-b border-border rounded-none bg-transparent focus-visible:ring-0 focus-visible:border-primary"
-                  required
+                  onChange={(e) => handleChange("email", e.target.value)}
+                  onBlur={(e) => validateField("email", e.target.value)}
+                  className={`h-12 px-0 border-0 border-b rounded-none bg-transparent focus-visible:ring-0 ${
+                    errors.email ? "border-destructive" : "border-border focus-visible:border-primary"
+                  }`}
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                 />
+                {errors.email && (
+                  <p id="email-error" className="mt-2 text-sm text-destructive">
+                    {errors.email}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -142,28 +226,51 @@ const Contact = () => {
                   type="tel"
                   placeholder="0412 345 678"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) => handleChange("phone", e.target.value)}
                   className="h-12 px-0 border-0 border-b border-border rounded-none bg-transparent focus-visible:ring-0 focus-visible:border-primary"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div>
                 <Label htmlFor="message" className="font-inter text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3 block">
-                  Message
+                  Message *
                 </Label>
                 <Textarea
                   id="message"
                   placeholder="Tell us about your project..."
                   rows={4}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="px-0 py-3 border-0 border-b border-border rounded-none bg-transparent focus-visible:ring-0 focus-visible:border-primary resize-none"
-                  required
+                  onChange={(e) => handleChange("message", e.target.value)}
+                  onBlur={(e) => validateField("message", e.target.value)}
+                  className={`px-0 py-3 border-0 border-b rounded-none bg-transparent focus-visible:ring-0 resize-none ${
+                    errors.message ? "border-destructive" : "border-border focus-visible:border-primary"
+                  }`}
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                 />
+                {errors.message && (
+                  <p id="message-error" className="mt-2 text-sm text-destructive">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
-              <Button type="submit" size="lg" className="w-full h-14 text-base mt-4">
-                Send Message
+              <Button 
+                type="submit" 
+                size="lg" 
+                className="w-full h-14 text-base mt-4"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </Button>
             </form>
           </AnimatedSection>
