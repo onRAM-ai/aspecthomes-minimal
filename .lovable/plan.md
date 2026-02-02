@@ -1,47 +1,27 @@
 
-
-## Plan: Add Fencing Photo to Gallery
+## Plan: Remove Unused backyard.png Asset
 
 ### Overview
-Add the uploaded fencing image to the gallery as a new project showcase titled "Fencing". This will bring the gallery to 5 project images plus the "More projects coming soon" tile.
+Delete the unused `backyard.png` file from the gallery assets folder to clean up the codebase. This image was previously used for the "Outdoor Living" gallery item that was removed earlier.
 
-### Changes Required
+### Verification Complete
+- File exists at `src/assets/gallery/backyard.png`
+- No references to "backyard" found anywhere in the codebase
+- Safe to delete
 
-**1. Copy Image to Assets**
+### File to Delete
 
-Copy the uploaded image to the gallery assets folder:
-- From: `user-uploads://fencing.png`
-- To: `src/assets/gallery/fencing.png`
+**`src/assets/gallery/backyard.png`**
 
-**2. Update Gallery Component**
-
-**File:** `src/components/Gallery.tsx`
-
-Add the fencing image import and include it in the gallery array:
-
-```tsx
-// Add import (after other gallery imports)
-import fencing from "@/assets/gallery/fencing.png";
-
-// Add to galleryImages array
-const galleryImages = [
-  { src: bathroom, alt: "Modern bathroom renovation", title: "Bathroom" },
-  { src: kitchen, alt: "Custom kitchen renovation", title: "Kitchen" },
-  { src: theater, alt: "Home theater room", title: "Theater Room" },
-  { src: patio, alt: "Covered patio with landscaping", title: "Patio" },
-  { src: fencing, alt: "Modern slat fencing installation", title: "Fencing" },
-];
-```
+Simply remove this file from the project.
 
 ### Result
+The gallery assets folder will contain only the 6 images currently in use:
+- bathroom.png
+- fencing.png
+- kitchen.png
+- patio.png
+- stairs.png
+- theater.png
 
-The gallery will display 6 tiles:
-- Bathroom
-- Kitchen
-- Theater Room
-- Patio
-- **Fencing** (new)
-- "More projects coming soon" tile
-
-This creates a balanced 6-tile layout that works perfectly with the 3-column desktop grid (2 full rows) and 2-column mobile grid (3 full rows).
-
+This keeps the codebase clean and reduces the deployed bundle size.
