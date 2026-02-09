@@ -126,3 +126,26 @@
     @apply h-px bg-border w-full;
   }
 }
+
+/* Animated border for hero image */
+@keyframes border-rotate {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated-border-wrapper {
+  background: conic-gradient(
+    from var(--angle),
+    hsl(134 57% 45%),
+    hsl(134 57% 65%),
+    hsl(134 40% 92%),
+    hsl(134 57% 45%)
+  );
+  animation: border-rotate 4s linear infinite;
+}
