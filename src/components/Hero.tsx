@@ -14,14 +14,14 @@ const Hero = () => {
   return (
     <section id="home" className="relative flex items-center">
       {/* Split Layout - Image Right */}
-      <div className="container px-4 pt-8 pb-0 lg:pt-4">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[60vh]">
+      <div className="container px-4 pt-16 pb-8 lg:pt-12">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[90vh]">
           {/* Content Left */}
           <div className="order-2 lg:order-1 max-w-xl">
             <p className="font-inter text-sm tracking-[0.2em] uppercase text-muted-foreground mb-8">
               Licensed Builders & Carpenters
             </p>
-            <h1 className="font-playfair text-5xl md:text-6xl lg:text-7xl font-normal text-foreground mb-8 leading-[1.1]">
+            <h1 className="font-playfair text-5xl md:text-6xl lg:text-8xl font-normal text-foreground mb-8 leading-[1.1]">
               Aspect Homes
             </h1>
             <div className="w-16 h-px bg-primary mb-8" />
@@ -42,12 +42,14 @@ const Hero = () => {
 
           {/* Image Right */}
           <div className="order-1 lg:order-2 relative">
-            <div className="aspect-[4/5] lg:aspect-[3/4] overflow-hidden relative">
-              <img
-                src={heroImage}
-                alt="Quality home construction by Aspect Homes"
-                className="w-full h-full object-contain"
-              />
+            <div className="animated-border-wrapper aspect-[4/5] lg:aspect-[3/4] relative p-[3px]">
+              <div className="w-full h-full overflow-hidden relative bg-background">
+                <img
+                  src={heroImage}
+                  alt="Quality home construction by Aspect Homes"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
